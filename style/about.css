@@ -1,0 +1,10 @@
+.about-container {
+  text-align: justify;
+ 
+}
+
+.about-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}

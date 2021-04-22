@@ -1,0 +1,28 @@
+.feature-article-container {
+  text-align: justify;
+ 
+}
+
+.feature-article-container img {
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.article-container {
+  color: rgb(36, 36, 36);
+  text-align: justify;
+  border-radius: .25em;
+  overflow: hidden;
+}
+
+.article-container>img {
+  height: 240px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.article-detail {
+  padding: 1em;
+  background-color: white;
+}

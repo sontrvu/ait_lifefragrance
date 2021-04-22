@@ -1,0 +1,101 @@
+.background-img {
+  display: table;
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url('../assets/images/background3.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+.item-container {
+  border: white 1px solid;
+  color: rgb(36, 36, 36);
+  background-color: white;
+  transition: transform 200ms;
+  border-radius: .25em;
+  overflow: hidden;
+}
+
+.item-container:hover {
+  transform: scale(1.05) ;
+}
+
+.item-container img {
+  height: 360px;
+  width: 100%;
+  object-fit: contain;
+}
+
+.item-detail {
+  padding: 1em;
+}
+
+.item-detail>.dropdown,
+.item-detail>.dropup {
+  margin-bottom: 1em;
+}
+
+.item-detail .item-price {
+  font-size: x-large;
+}
+
+.item-detail>.dropdown>button,
+.item-detail>.dropup>button {
+  width: 100%;
+  background-color: white;
+  color: rgb(36, 36, 36);
+  border: rgb(36, 36, 36) 2px solid;
+}
+
+.item-detail button.btn-add-to-cart {
+  width: 100%;
+  border-width: 2px;
+  /* background-color: rgb(36, 36, 36); */
+}
+
+.review-container {
+  height: 400px;
+  background-color: rgb(36, 36, 36);
+}
+
+.review-container>img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.review-container>.review-content,
+.review-container>p,
+.review-container>blockquote {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+}
+
+.review-container>blockquote {
+  background-color: rgba(36, 36, 36, 0.5);
+  border-radius: .5em;
+  text-align: justify;
+  padding: .5em;
+}
+
+.article-container {
+  color: rgb(36, 36, 36);
+  text-align: justify;
+  border-radius: .25em;
+  overflow: hidden;
+}
+
+.article-container>img {
+  height: 240px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.article-detail {
+  padding: 1em;
+  background-color: white;
+}
