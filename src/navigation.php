@@ -22,9 +22,9 @@
         <li class="nav-item">
           <a class="nav-link <?php if ($activePage == 2) echo "active" ?>" href="shop.php">Shop</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link <?php if ($activePage == 3) echo "active" ?>" href="blog.php">Blog</a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link <?php if ($activePage == 4) echo "active" ?>" href="about.php">About</a>
         </li>

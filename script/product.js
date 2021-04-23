@@ -1,4 +1,20 @@
-$(function() {
+
+function addToCart(productId) {
+  let quantity = $("#inputQuantity").val();
+  if (!isValidQuantity(quantity)) {
+    alert("Invalid quantity!");
+    return;
+  }
+
+  $("#cart-btn").addClass('btn-success');
+  $("#cart-btn").removeClass('btn-outline-light');
+  $("#cart-btn").html("Added");
+
+  addToCartTable(productId, quantity);
+}
+
+
+// $(function() {
   // let prodId = getCookie("selectedProdId");
   // let product = coffeeProds.find( ({ id }) => id === prodId );
   
@@ -24,44 +40,33 @@ $(function() {
   //   return displayValue;
   // });
 
-  sizeOptions.forEach(function(value, index, array) {
-    dropdownSizes += `<button class="dropdown-item" onclick="selectSize($(this))" selectedIdx="${index}">${value}</button>`;
-  });
+//   sizeOptions.forEach(function(value, index, array) {
+//     dropdownSizes += `<button class="dropdown-item" onclick="selectSize($(this))" selectedIdx="${index}">${value}</button>`;
+//   });
 
-  product.grindOptions.forEach(function(value, index, array) {
-    dropdownGrinds += `<button class="dropdown-item" onclick="selectGrind($(this))" selectedIdx="${index}">${value}</button>`;
-  });
+//   product.grindOptions.forEach(function(value, index, array) {
+//     dropdownGrinds += `<button class="dropdown-item" onclick="selectGrind($(this))" selectedIdx="${index}">${value}</button>`;
+//   });
 
-  $("#p-selected-size").html(sizeOptions[product.prefSize || 0]);
-  $("#p-sizes").append(dropdownSizes);
+//   $("#p-selected-size").html(sizeOptions[product.prefSize || 0]);
+//   $("#p-sizes").append(dropdownSizes);
 
-  $("#p-selected-grind").html(product.grindOptions[product.prefGrind || 0]);
-  $("#p-grinds").append(dropdownGrinds);
-});
+//   $("#p-selected-grind").html(product.grindOptions[product.prefGrind || 0]);
+//   $("#p-grinds").append(dropdownGrinds);
+// });
 
-function selectSize(element) {
-  let value = element.html();
-  let idx = element.attr("selectedIdx");
+// function selectSize(element) {
+//   let value = element.html();
+//   let idx = element.attr("selectedIdx");
 
-  $("#p-selected-size").html(value);
-  $("#p-selected-size").attr("selectedIdx", idx);
-}
+//   $("#p-selected-size").html(value);
+//   $("#p-selected-size").attr("selectedIdx", idx);
+// }
 
-function selectGrind(element) {
-  let value = element.html();
-  let idx = element.attr("selectedIdx");
+// function selectGrind(element) {
+//   let value = element.html();
+//   let idx = element.attr("selectedIdx");
 
-  $("#p-selected-grind").html(value);
-  $("#p-selected-grind").attr("selectedIdx", idx);
-}
-
-function addToCart() {
-  $("#cart-btn").addClass('btn-success');
-  $("#cart-btn").removeClass('btn-outline-light');
-  $("#cart-btn").html("Added");
-
-  let qty = $("#buy-quantity").val();
-  let prodId = $("#p-id").val();
-  // let sizeIdx = $("#p-selected-grind").attr("selectedIdx");
-  addToCartTable(prodId, qty);
-}
+//   $("#p-selected-grind").html(value);
+//   $("#p-selected-grind").attr("selectedIdx", idx);
+// }

@@ -40,6 +40,12 @@
   font-size: x-large;
 }
 
+.item-detail .item-description {
+  word-wrap: break-word;
+  overflow: auto;
+  height: 4em;
+}
+
 .item-detail>.dropdown>button,
 .item-detail>.dropup>button {
   width: 100%;

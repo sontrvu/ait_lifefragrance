@@ -68,29 +68,20 @@ include "src\\header.php";
 
           <div class="col-sm-3">
             <div class="item-container shadow">
-              <input type="hidden" class="product-id" value="<?php echo $row["Id"] ?>">
-              <a href="product.php" onclick="goToProduct($(this))">
+              <input type="hidden" value="<?php echo $row["Id"] ?>">
+              <a href='product.php?productId=<?php echo $row["Id"] ?>'>
                 <img class="product-thumbnail" src="<?php echo $row["ImagePath"] ?>" alt="product1">
               </a>
 
               <div class="item-detail">
                 <h4 class="text-center product-title text-capitalize"><?php echo $row["Name"] ?></h4>
 
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle product-selected-size" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    ...
-                  </button>
-                  <div class="dropdown-menu product-sizes">
-                    <!-- Size options -->
-                  </div>
-                </div>
+                <div class="text-justify item-description my-3"><?php echo $row["Description"] ?></div>
 
-                <div class="dropup">
-                  <button class="btn btn-secondary dropdown-toggle product-selected-grind" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    ...
-                  </button>
-                  <div class="dropdown-menu product-grinds">
-                    <!-- Grind options -->
+                <div class="form-group row">
+                  <label for="inputQuantity" class="col-sm-4 col-form-label">Quantity</label>
+                  <div class="col-sm-8">
+                    <input type="number" class="form-control" id='inputQuantity<?php echo $row["Id"] ?>' placeholder="Enter quantity" value="1" min="1" max="999">
                   </div>
                 </div>
 
@@ -99,8 +90,7 @@ include "src\\header.php";
                     <span class="my-auto product-price">$<?php echo $row["Price"] ?></span>
                   </div>
                   <div class="col">
-                    <button type="button" class="btn btn-dark btn-lg" onclick="addToCart($(this))">Add to cart</button>
-                    <input type="hidden" class="product-id" value="">
+                    <button type="button" id='btnAddToCart<?php echo $row["Id"] ?>' class="btn btn-dark btn-lg" onclick='addToCart(<?php echo $row["Id"] ?>)'>Add to cart</button>
                   </div>
                 </div>
               </div>

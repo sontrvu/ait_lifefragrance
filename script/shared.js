@@ -1,38 +1,20 @@
-function addToCartTable(addedProductId, quantity) {
-  // { prod1: 1, prod2: 5, prod3: 4 }
+function addToCartTable(productId, quantity) {
+  $.ajax({
+    url: "src/request-handlers/cart.php",
+    type: "post",
+    data: { action: "addItem", productId: productId, quantity: quantity },
+    success: function (response) {
+      if (!response.isSuccess) {
+        displayError(response.message);
+      }
 
-  let cartListObject = localStorage.getItem('cartList');
-  let cartList = JSON.parse(cartListObject)
-
-  if (!cartList) {
-    cartList = {};
-  }
-
-  let quantityNum = parseInt(quantity);
-
-  if (cartList.hasOwnProperty(addedProductId)) {
-    let currentQty = parseInt(cartList[addedProductId])
-    cartList[addedProductId] = currentQty + (quantityNum || 1);
-  } else {
-    cartList[addedProductId] = quantityNum || 1;
-  }
-
-  localStorage.setItem('cartList', JSON.stringify(cartList));
-  reloadCart();
+      reloadCart();
+    },
+    error: function (request, status, error) {
+      displayError(request.responseText);
+    }
+  });
 }
-
-// function removeFromCart(prodId) {
-//   let cartListObject = localStorage.getItem('cartList');
-//   let cartList = JSON.parse(cartListObject)
-
-//   if (!cartList || !cartList.hasOwnProperty(prodId)) { return false; }
-
-//   delete cartList[prodId];
-//   localStorage.setItem('cartList', JSON.stringify(cartList));
-//   reloadCart();
-
-//   return false;
-// }
 
 function checkout() {
   localStorage.removeItem('cartList');
@@ -45,7 +27,10 @@ function checkout() {
 
 
 
-
+function isValidQuantity(str) {
+  var n = Math.floor(Number(str));
+  return n !== Infinity && String(n) === str && n > 0;
+}
 
 function setCookie(cname, cvalue) {
   document.cookie = cname + "=" + cvalue;

@@ -49,6 +49,7 @@ function getItems() {
   return;
 }
 
+
 function addItem($productId, $quantity) {
   global $connection;
 
@@ -58,7 +59,22 @@ function addItem($productId, $quantity) {
     return;
   }
 
+  // Check if item is already in cart
   $userId = $_SESSION["user_id"];
+  $query = "SELECT * FROM `usercart` WHERE `ProductId` = '$productId' AND `UserId` = '$userId'";
+  $results = mysqli_query($connection, $query);
+  
+  if (mysqli_num_rows($results) > 0) {
+    updateExistingItem($productId, $quantity);
+  } else {
+    addNewItem($productId, $quantity);
+  }
+}
+
+function addNewItem($productId, $quantity) {
+  global $connection;
+  $userId = $_SESSION["user_id"];
+  
   $query = "INSERT INTO `usercart` (`UserId`, `ProductId`, `Quantity`) 
             VALUES ('$userId', '$productId', '$quantity')";
   
@@ -71,8 +87,26 @@ function addItem($productId, $quantity) {
   }
 
   mysqli_close($connection);
-  return;
 }
+
+function updateExistingItem($productId, $quantity) {
+  global $connection;
+  $userId = $_SESSION["user_id"];
+  
+  $query = "UPDATE `usercart` SET `Quantity` = `Quantity` + '$quantity'
+            WHERE `ProductId` = '$productId' AND `UserId` = '$userId'";
+  
+  if (mysqli_query($connection, $query)) {
+    $data = ["isSuccess" => true];
+    echo json_encode($data);
+  } else {
+    $data = ["isSuccess" => false, "message" => "Something went wrong!"];
+    echo json_encode($data);
+  }
+
+  mysqli_close($connection);
+}
+
 
 function removeItem($productId) {
   global $connection;

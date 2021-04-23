@@ -50,28 +50,19 @@ include "src\\navigation.php";
         <div class="col-sm-3">
           <div class="item-container shadow mb-5 mb-md-0">
             <input type="hidden" class="item-id" value="<?php echo $row["Id"] ?>">
-            <a href="product.php" onclick="goToProduct($(this))">
+            <a href='product.php?productId=<?php echo $row["Id"] ?>'>
               <img class="item-image" src="<?php echo $row["ImagePath"] ?>" alt="product1">
             </a>
 
             <div class="item-detail">
               <h4 class="text-center item-title"><?php echo $row["Name"] ?></h4>
 
-              <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle product-selected-size" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  ...
-                </button>
-                <div class="dropdown-menu product-sizes">
-                  <!-- Size options -->
-                </div>
-              </div>
+              <div class="text-justify item-description my-3"><?php echo $row["Description"] ?></div>
 
-              <div class="dropup">
-                <button class="btn btn-secondary dropdown-toggle product-selected-grind" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  ...
-                </button>
-                <div class="dropdown-menu product-grinds">
-                  <!-- Grind options -->
+              <div class="form-group row">
+                <label for="inputQuantity" class="col-sm-4 col-form-label">Quantity</label>
+                <div class="col-sm-8">
+                  <input type="number" class="form-control" id='inputQuantity<?php echo $row["Id"] ?>' placeholder="Enter quantity" value="1" min="1" max="999">
                 </div>
               </div>
 
@@ -80,7 +71,7 @@ include "src\\navigation.php";
                   <span class="my-auto item-price">$<?php echo $row["Price"] ?></span>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-dark btn-lg btn-add-to-cart" onclick="addToCart($(this))">Add to
+                  <button type="button" id='btnAddToCart<?php echo $row["Id"] ?>' class="btn btn-dark btn-lg btn-add-to-cart" onclick='addToCart(<?php echo $row["Id"] ?>)'>Add to
                     cart</button>
                   <input type="hidden" class="item-id" value="">
                 </div>
@@ -150,13 +141,13 @@ include "src\\navigation.php";
 
   <!-- BLOG ARTICLES -->
   <div class="background-img pt-4 pb-5">
-    <h3 class="text-center mb-4">Visit our blog</h3>
+    <h3 class="text-center mb-4">About us</h3>
 
     <div class="container-fluid">
       <div class="row justify-content-around">
-        <div class="col-sm-5">
+        <div class="col-sm-8">
           <div class="article-container shadow mb-5 mb-md-0">
-            <img class="article-thumbnail" src="assets/images/blog/blog1.jpg" alt="product1">
+            <img class="article-thumbnail" src="assets/images/about4.jpg" alt="product1">
 
             <div class="article-detail">
               <h4 class="article-title">[Article title]</h4>
@@ -169,24 +160,6 @@ include "src\\navigation.php";
                   more</button>
               </div>
 
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-5">
-          <div class="article-container shadow">
-            <img class="article-thumbnail" src="assets/images/blog/blog2.jpg" alt="product1">
-
-            <div class="article-detail">
-              <h4 class="article-title">[Article title]</h4>
-
-              <p class="article-sumary">[Article sumary]</p>
-
-              <div class="text-right">
-                <input type="hidden" class="article-id" value="">
-                <button type="button" class="btn btn-outline-dark text-center" onclick="goToArticle($(this))">Read
-                  more</button>
-              </div>
             </div>
           </div>
         </div>
