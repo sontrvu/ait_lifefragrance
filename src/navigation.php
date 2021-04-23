@@ -155,8 +155,9 @@
         <thead>
           <tr>
             <th scope="col">Name</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Price</th>
+            <th scope="col" class="text-right">Price</th>
+            <th scope="col" class="text-right">Quantity</th>
+            <th scope="col" class="text-right">Amount</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -205,7 +206,8 @@
 
   <script type="text/javascript">
     $(function() {
-      setUpPopOver();
+      setUpLogOutPopOver();
+      setUpCartPopOver();
 
       $("#loginForm").submit(function(e) {
         e.preventDefault();
@@ -218,7 +220,7 @@
       });
     });
 
-    function setUpPopOver() {
+    function setUpCartPopOver() {
       $('#cartBtn').popover({
         html: true,
         template: `
@@ -233,7 +235,97 @@
       $('#cartBtn').on('shown.bs.popover', function() {
         $('#cartPopoverContainer').html(displayCart());
       });
+    }
 
+    function displayCart() {
+      reloadCart();
+      return $('#cartContentWrapper').html()
+
+      /*
+      let cartListObject = localStorage.getItem('cartList');
+      let cartList = JSON.parse(cartListObject)
+
+      if (jQuery.isEmptyObject(cartList)) {
+        return $('#cartContentEmptyWrapper').html();
+      } else {
+        reloadCart();
+        return $('#cartContentWrapper').html()
+      }
+      */
+    }
+
+    function reloadCart() {
+      $.ajax({
+        url: "src/request-handlers/cart.php",
+        type: "post",
+        data: { action: "getItems" },
+        success: function (response) {
+          if (response.isSuccess) {
+            populateCart(response.data);
+          } else {
+            displayError(response.message);
+          }
+        },
+        error: function (request, status, error) {
+          displayError(request.responseText);
+        }
+      });
+    }
+
+    function populateCart(cartList) {
+      let rows = "";
+      let totalPrice = 0;
+
+      for (const product of cartList) {
+        if (!product)
+          continue;
+
+        totalPrice += product.amount
+        rows += `
+        <tr>
+          <td>${product.name}</td>
+          <td class="text-right">$${product.price}</td>
+          <td class="text-right">${product.quantity}</td>
+          <td class="text-right">$${product.amount}</td>
+          <td><a href="#" class="text-danger" onclick="return removeFromCart('${product.id}')">X</a></td>
+        </tr>
+        `;
+      }
+
+      rows += `
+      <tr>
+        <td></td>
+        <td></td>
+        <td class="font-weight-bolder text-success text-right">Total</td>
+        <td class="font-weight-bolder text-success text-right">$${totalPrice}</td>
+        <td></td>
+      </tr>
+      `
+
+      $(".cart-table tbody").empty();
+      $(".cart-table tbody").html(rows);
+    }
+
+    function removeFromCart(productId) {
+      $.ajax({
+        url: "src/request-handlers/cart.php",
+        type: "post",
+        data: { action: "removeItem", productId: productId },
+        success: function (response) {
+          if (!response.isSuccess) {
+            displayError(response.message);
+          }
+
+          reloadCart();
+        },
+        error: function (request, status, error) {
+          displayError(request.responseText);
+        }
+      });
+    }
+    
+
+    function setUpLogOutPopOver() {
       $('#welcomeUserContainer').popover({
         html: true,
         content: `<a id="logoutBtn" class="text-dark font-weight-bold">Log out</a>`
@@ -243,6 +335,7 @@
         $('#logoutBtn').click(logout);
       });
     }
+    
 
     function login() {
       let email = $('#inputEmail').val();

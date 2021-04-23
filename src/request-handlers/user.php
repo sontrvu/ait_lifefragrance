@@ -33,10 +33,11 @@ function login($email, $pwd) {
 
   if ($inputsAreValid) {
     $query = "SELECT * FROM `user` WHERE `Email` = '$email'LIMIT 1";
-    $results = mysqli_query($connection, $query);  
+    $results = mysqli_query($connection, $query);
     $row = mysqli_fetch_array($results);
     
     if (isset($row) && password_verify($pwd, $row["Password"])) {
+      $_SESSION["user_id"] = $row["Id"];
       $_SESSION["user_email"] = $row["Email"];
       $_SESSION["user_fullname"] = $row["FirstName"] . " " . $row["LastName"];
   
@@ -94,7 +95,7 @@ function register($email, $pwd, $fname, $lname) {
     if (mysqli_query($connection, $query)) {
       login($email, $pwd);
       return;
-    } 
+    }
   }
 
   $data = ["isSuccess" => false, "message" => "Something went wrong! Please try again"];
