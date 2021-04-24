@@ -1,27 +1,11 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-  <title>Life Fragrance</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <!-- Font Awesome icon -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="style/shared.css">
-  <link rel="stylesheet" href="style/about.css">
-</head>
+<?php
+  $activePage = 4;
+  include "src\\header.php";
+?>
 
 <body>
 
 <?php
-  $activePage = 4;
   include "src\\navigation.php";
 ?>
 

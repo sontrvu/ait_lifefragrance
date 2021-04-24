@@ -16,6 +16,10 @@ switch ($_POST['action']) {
   case 'removeItem':
     removeItem($_POST['productId']);
     break;
+  
+  case 'checkout':
+    checkout();
+    break;
 
   default:
     break;
@@ -119,6 +123,31 @@ function removeItem($productId) {
 
   $userId = $_SESSION["user_id"];
   $query = "DELETE FROM `usercart` WHERE `UserId` = '$userId' AND `ProductId` = '$productId'";
+  
+  if (mysqli_query($connection, $query)) {
+    $data = ["isSuccess" => true];
+    echo json_encode($data);
+  } else {
+    $data = ["isSuccess" => false, "message" => "Something went wrong!"];
+    echo json_encode($data);
+  }
+
+  mysqli_close($connection);
+  return;
+}
+
+
+function checkout() {
+  global $connection;
+
+  if (!isset($_SESSION["user_id"])) {
+    $data = ["isSuccess" => false, "message" => "Something went wrong!"];
+    echo json_encode($data);
+    return;
+  }
+
+  $userId = $_SESSION["user_id"];
+  $query = "DELETE FROM `usercart` WHERE `UserId` = '$userId'";
   
   if (mysqli_query($connection, $query)) {
     $data = ["isSuccess" => true];

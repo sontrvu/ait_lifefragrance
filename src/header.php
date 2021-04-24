@@ -21,9 +21,32 @@ session_start();
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="style/shared.css">
-  <link rel="stylesheet" href="style/index.css">
-  <link rel="stylesheet" href="style/shop.css">
-  <link rel="stylesheet" href="style/product.css">
+
+  <?php 
+    switch ($activePage) {
+      case 1:
+        echo '<link rel="stylesheet" href="style/index.css">';
+        break;
+      case 2:
+        echo '<link rel="stylesheet" href="style/shop.css">';
+        break;
+      case 3:
+        echo '<link rel="stylesheet" href="style/product.css">';
+        break;
+      case 4:
+        echo '<link rel="stylesheet" href="style/about.css">';
+        break;
+      case 5:
+        echo '<link rel="stylesheet" href="style/contact.css">';
+        break;
+      case 6:
+        echo '<link rel="stylesheet" href="style/search.css">';
+        break;
+
+      default:
+        break;
+    }
+  ?>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

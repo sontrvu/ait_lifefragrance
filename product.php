@@ -1,16 +1,16 @@
 <?php
-if (!isset($_GET["productId"])) {
-  header( "Location: shop.php" );
-  return;
-}
+  if (!isset($_GET["productId"])) {
+    header( "Location: shop.php" );
+    return;
+  }
 
-include "src\\header.php";
+  $activePage = 3;
+  include "src\\header.php";
 ?>
 
 <body>
 
 <?php
-  $activePage = 2;
   include "src\\navigation.php";
 ?>
 

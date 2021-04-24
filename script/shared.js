@@ -16,9 +16,22 @@ function addToCartTable(productId, quantity) {
   });
 }
 
-function checkout() {
-  localStorage.removeItem('cartList');
-  $('#cartBtn').popover('hide');
+function checkout() {  
+  $.ajax({
+  url: "src/request-handlers/cart.php",
+  type: "post",
+  data: { action: "checkout" },
+  success: function (response) {
+    if (!response.isSuccess) {
+      displayError(response.message);
+    }
+
+    reloadCart();
+  },
+  error: function (request, status, error) {
+    displayError(request.responseText);
+  }
+});
 }
 
 

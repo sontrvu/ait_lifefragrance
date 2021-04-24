@@ -1,11 +1,11 @@
 <?php
-include "src\\header.php";
+  $activePage = 2;
+  include "src\\header.php";
 ?>
 
 <body>
 
 <?php
-  $activePage = 2;
   include "src\\navigation.php";
 ?>
 

@@ -1,6 +1,7 @@
 <?php
-  $isLoggedIn = !empty($_SESSION["user_email"]);
+  $isLoggedIn = !empty($_SESSION["user_id"]);
 ?>
+
 
 
   <!-- NAV BAR -->
@@ -20,16 +21,16 @@
           <a class="nav-link <?php if ($activePage == 1) echo "active" ?>" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?php if ($activePage == 2) echo "active" ?>" href="shop.php">Shop</a>
+          <a class="nav-link <?php if ($activePage == 2 || $activePage == 3) echo "active" ?>" href="shop.php">Shop</a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link <?php if ($activePage == 3) echo "active" ?>" href="blog.php">Blog</a>
-        </li> -->
         <li class="nav-item">
           <a class="nav-link <?php if ($activePage == 4) echo "active" ?>" href="about.php">About</a>
         </li>
         <li class="nav-item">
           <a class="nav-link <?php if ($activePage == 5) echo "active" ?>" href="contact.php">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link <?php if ($activePage == 6) echo "active" ?>" href="search.php"><i class="fa fa-search" aria-hidden="true"></i></i></a>
         </li>
       </ul>
     </div>
@@ -161,7 +162,7 @@
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="cart-table-body">
           <!-- ADDED ITEMS HERE -->
         </tbody>
       </table>
@@ -233,25 +234,8 @@
       });
 
       $('#cartBtn').on('shown.bs.popover', function() {
-        $('#cartPopoverContainer').html(displayCart());
-      });
-    }
-
-    function displayCart() {
-      reloadCart();
-      return $('#cartContentWrapper').html()
-
-      /*
-      let cartListObject = localStorage.getItem('cartList');
-      let cartList = JSON.parse(cartListObject)
-
-      if (jQuery.isEmptyObject(cartList)) {
-        return $('#cartContentEmptyWrapper').html();
-      } else {
         reloadCart();
-        return $('#cartContentWrapper').html()
-      }
-      */
+      });
     }
 
     function reloadCart() {
@@ -273,6 +257,11 @@
     }
 
     function populateCart(cartList) {
+      if (cartList.length == 0) {
+        showEmptyCart()
+        return;
+      }
+
       let rows = "";
       let totalPrice = 0;
 
@@ -282,28 +271,36 @@
 
         totalPrice += product.amount
         rows += `
-        <tr>
-          <td>${product.name}</td>
-          <td class="text-right">$${product.price}</td>
-          <td class="text-right">${product.quantity}</td>
-          <td class="text-right">$${product.amount}</td>
-          <td><a href="#" class="text-danger" onclick="return removeFromCart('${product.id}')">X</a></td>
-        </tr>
+          <tr>
+            <td>${product.name}</td>
+            <td class="text-right">$${product.price}</td>
+            <td class="text-right">${product.quantity}</td>
+            <td class="text-right">$${product.amount}</td>
+            <td><a href="#" class="text-danger" onclick="return removeFromCart('${product.id}')">X</a></td>
+          </tr>
         `;
       }
 
       rows += `
-      <tr>
-        <td></td>
-        <td></td>
-        <td class="font-weight-bolder text-success text-right">Total</td>
-        <td class="font-weight-bolder text-success text-right">$${totalPrice}</td>
-        <td></td>
-      </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td class="font-weight-bolder text-success text-right">Total</td>
+          <td class="font-weight-bolder text-success text-right">$${totalPrice}</td>
+          <td></td>
+        </tr>
       `
 
-      $(".cart-table tbody").empty();
-      $(".cart-table tbody").html(rows);
+      $(".cart-table-body").empty();
+      $(".cart-table-body").html(rows);
+      
+      let content = $('#cartContentWrapper').html();
+      $('#cartPopoverContainer').html(content);
+    }
+
+    function showEmptyCart() {
+      let content = $('#cartContentEmptyWrapper').html();
+      $('#cartPopoverContainer').html(content);
     }
 
     function removeFromCart(productId) {
