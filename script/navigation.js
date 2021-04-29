@@ -47,11 +47,15 @@ $(function() {
     Cart
   */
   function reloadCart() {
+    $("#cartBtnSpinner").toggleClass("d-none");
+    
     $.ajax({
       url: "src/request-handlers/cart.php",
       type: "post",
       data: { action: "getItems" },
       success: function (response) {
+        $("#cartBtnSpinner").toggleClass("d-none");
+
         if (response.isSuccess) {
           populateCart(response.data);
         } else {
@@ -174,6 +178,8 @@ $(function() {
     let email = $('#inputEmail').val();
     let pwd = $('#inputPassword').val();
 
+    showLoading("Logging you in");
+
     $.ajax({
       url: "src/request-handlers/user.php",
       type: "post",
@@ -192,6 +198,8 @@ $(function() {
   }
   
   function logout() {
+    showLoading("Good bye");
+
     $.ajax({
       url: "src/request-handlers/user.php",
       type: "post",
@@ -216,6 +224,8 @@ $(function() {
     let pwd = $('#inputRegPassword').val();
     let cPwd = $('#inputRegConfirmPassword').val();
 
+    showLoading("Checking...");
+
     if (pwd != cPwd) {
       alertMessage("Password does not match");
       return;
@@ -239,11 +249,31 @@ $(function() {
   }
 
   function alertMessage(message) {
+    setTimeout(function() {
+      $("#loadingModal").modal('hide');
+      $("#infoModal").modal('hide');
+    }, 500);
+
     $("#alertModalMessage").html(message);
     $("#alertModal").modal('show');
   }
 
   function showMessage(message) {
+    setTimeout(function() {
+      $("#loadingModal").modal('hide');
+      $("#alertModal").modal('hide');
+    }, 500);
+
     $("#infoModalMessage").html(message);
     $("#infoModal").modal('show');
+  }
+
+  function showLoading(message) {
+    setTimeout(function() {
+      $("#infoModal").modal('hide');
+      $("#alertModal").modal('hide');
+    }, 500);
+
+    $("#loadingModalMessage").html(message);
+    $("#loadingModal").modal('show');
   }

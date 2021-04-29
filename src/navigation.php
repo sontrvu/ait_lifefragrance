@@ -52,7 +52,11 @@
           </li>
 
           <li class="nav-item">
-            <button type="button" id="cartBtn" class="btn btn-outline-light nav-button" data-placement="bottom">Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+            <button type="button" id="cartBtn" class="btn btn-outline-light nav-button" data-placement="bottom">
+              <div id="cartBtnSpinner" class="spinner-border spinner-border-sm text-light d-none"></div>
+              Cart 
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            </button>
           </li>
 
         <?php
@@ -212,6 +216,20 @@
       </div>
     </div>
   </div>
+
+
+<!-- LOADING MODAL -->
+<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-dark">
+      <div class="modal-body text-center">
+        <h3 id="loadingModalMessage"></h3>
+        <div class="spinner-border spinner-border-sm text-light"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 

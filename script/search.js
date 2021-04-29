@@ -13,6 +13,8 @@ function searchItem() {
   if (keyword.length < 3)
     return;
 
+  loadingAnimation();
+
   $.ajax({
     url: "src/request-handlers/item.php",
     type: "post",
@@ -23,6 +25,7 @@ function searchItem() {
       }
     }
   });
+
 }
 
 function populateSearchResults(products) {
@@ -50,4 +53,13 @@ function populateSearchResults(products) {
 
     resultContainer.append(item);
   }
+}
+
+function loadingAnimation() {
+  let resultContainer = $('#search-result-container');
+  resultContainer.empty();
+
+  let template = $('#loader-template').html();
+  let item = $(template).clone();
+  resultContainer.append(item);
 }

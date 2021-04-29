@@ -57,6 +57,12 @@
         </div>
       </div>
     </div> 
+  </script>  
+  
+  <script id="loader-template" type="text/x-custom-template">
+    <div class="loader-container">
+      <div class="loader spinner-border text-light"></div>
+    </div>
   </script>
 
   <?php
