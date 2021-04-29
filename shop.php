@@ -17,9 +17,9 @@
       <div class="carousel-item active">
         <img class="d-block w-100 carousel-item-image" src="assets/images/background4.jpg" alt="First slide">
         <div class="carousel-caption-container p-3">
-          <h2>BUY ONLINE</h2>
-          <span class="mt-3">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+          <h2 class="text-uppercase">The atmospheric revolution is here.</h2>
+          <span class="mt-3 text-uppercase">
+            We invite you, through our fragrances, to an exciting manner of living that only those who experience it will comprehend.
           </span>
         </div>
       </div>

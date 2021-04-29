@@ -3,8 +3,10 @@
     <div class="container">
       <div class="row justify-content-between">
         <div class="col-sm-12 col-md-6">
-          <h6>About</h6>
-          <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+          <h6>About Us</h6>
+            <p class="text-justify">
+              High quality, all natural products - Made in Australia.<br/>Natural, healing skin care using all-natural, undiluted essential oils.
+            </p>
         </div>
 
         <div class="col-xs-6 col-md-3">
@@ -12,9 +14,8 @@
           <ul class="footer-links">
             <li><a href="index.php">Home</a></li>
             <li><a href="shop.php">Shop</a></li>
-            <!-- <li><a href="blog.html">Blog</a></li> -->
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.php">About</a></li>
+            <li><a href="contact.php">Contact</a></li>
           </ul>
         </div>
       </div>

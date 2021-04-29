@@ -18,9 +18,9 @@
       <div class="carousel-item active">
         <img class="d-block w-100 carousel-item-image" src="assets/images/carousel.jpg" alt="First slide">
         <div class="carousel-caption-container p-3">
-          <h2 class="text-uppercase">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
+          <h2 class="text-uppercase">High quality, all natural products<br/>Made in Australia</h2>
           <span class="mt-2 text-uppercase">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium
+              Natural, healing skin care without added fragrance, aromatherapy blends, using all-natural, undiluted essential oils. 
           </span>
         </div>
       </div>
@@ -99,16 +99,16 @@
             <div class="carousel-item active h-100 review-container">
               <img src="assets/images/background5.jpg" alt="">
               <blockquote class="blockquote text-right">
-                <p class="mb-0">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"</p>
-                <footer class="blockquote-footer text-light">John</footer>
+                <p class="mb-0">"When I first received the package I could smell the aroma through the box. That’s just because of the high quality of the oils. They have a distinct scent that proved themselves long-lasting."</p>
+                <footer class="blockquote-footer text-light">Mitchell Geizhals</footer>
               </blockquote>
             </div>
 
             <div class="carousel-item h-100 review-container">
               <img src="assets/images/background6.jpg" alt="">
               <blockquote class="blockquote text-right">
-                <p class="mb-0">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"</p>
-                <footer class="blockquote-footer text-light">Karen <cite title="Source Title">ABC News</cite></footer>
+                <p class="mb-0">"I have used other brand name oils before and this ones are the best so far. It is very strong and diffuser only needs couple of drops."</p>
+                <footer class="blockquote-footer text-light">Karen <cite title="Source Title">Tatiana</cite></footer>
               </blockquote>
             </div>
 
@@ -118,7 +118,8 @@
       </div>
       <div class="col-sm p-0 review-container bg-dark text-center">
         <div class="review-content">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+          <h4>The atmospheric revolution is here.</h4>
+          <p>We invite you, through our fragrances, to an exciting manner of living that only those who experience it will comprehend. </p>
           <a href="shop.php"><button type="button" class="btn btn-light mt-2">Shop now</button></a>
         </div>
       </div>
@@ -126,9 +127,7 @@
     <div class="row">
       <div class="col-sm p-0 review-container text-center">
         <div class="review-content">
-          <h6>Lorem</h6>
-          <h4 class="my-2">Lorem</h4>
-          <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span>
+          <span>All of Life Fragrance's aromas comply with the highest level of safety and regulatory compliance set by the International Fragrance Association (IFRA).</span>
         </div>
       </div>
       <div class="col-sm p-0 bg-dark review-container">
@@ -150,14 +149,14 @@
             <img class="article-thumbnail" src="assets/images/about4.jpg" alt="product1">
 
             <div class="article-detail">
-              <h4 class="article-title">[Article title]</h4>
+              <h4 class="article-title">Welcome to Life Fragrance</h4>
 
-              <p class="article-sumary">[Article sumary]</p>
+              <p class="article-sumary">For years, Life Fragrance< has dependably created high-quality, all-natural products - 
+              made in Melbourne in small batches - using simple, organic ingredients.</p>
 
               <div class="text-right">
                 <input type="hidden" class="article-id" value="">
-                <button type="button" class="btn btn-outline-dark text-center" onclick="goToArticle($(this))">Read
-                  more</button>
+                <button type="button" class="btn btn-outline-dark text-center">Read more</button>
               </div>
 
             </div>
