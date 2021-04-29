@@ -18,20 +18,20 @@ function addToCartTable(productId, quantity) {
 
 function checkout() {  
   $.ajax({
-  url: "src/request-handlers/cart.php",
-  type: "post",
-  data: { action: "checkout" },
-  success: function (response) {
-    if (!response.isSuccess) {
-      displayError(response.message);
-    }
+    url: "src/request-handlers/cart.php",
+    type: "post",
+    data: { action: "checkout" },
+    success: function (response) {
+      if (!response.isSuccess) {
+        displayError(response.message);
+      }
 
-    reloadCart();
-  },
-  error: function (request, status, error) {
-    displayError(request.responseText);
-  }
-});
+      reloadCart();
+    },
+    error: function (request, status, error) {
+      displayError(request.responseText);
+    }
+  });
 }
 
 

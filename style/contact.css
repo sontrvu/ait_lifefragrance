@@ -2,3 +2,7 @@
   width: 400px;
   height: 300px;
 }
+
+.submit-btn {
+  min-width: 10em;
+}

@@ -179,7 +179,6 @@
   
   <!-- Custom scripts -->
   <script src="script/shared.js"></script>
-  <script src="script/content-generator.js"></script>
   <script src="script/index.js"></script>
 </body>
 
