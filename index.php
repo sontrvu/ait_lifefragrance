@@ -68,7 +68,7 @@
 
               <div class="row">
                 <div class="col-4 my-auto">
-                  <span class="my-auto item-price">$<?php echo $row["Price"] ?></span>
+                  <span class="my-auto item-price">$<?php echo number_format($row["Price"], 2, '.', ''); ?></span>
                 </div>
                 <div class="col">
                   <button type="button" id='btnAddToCart<?php echo $row["Id"] ?>' class="btn btn-dark btn-lg btn-add-to-cart" onclick='addToCart(<?php echo $row["Id"] ?>)'>Add to

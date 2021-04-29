@@ -26,23 +26,27 @@
   $product = mysqli_fetch_array($results);
 ?>
 
+<div class="background-img">
   <div class="container-fluid prod-container">
-    <div class="row justify-content-center">
-      <div class="col-sm-5 prod-img-container">
-        <img id="p-image" class="prod-img shadow-sm" src="<?php echo $product["ImagePath"]; ?>" alt="">
+    <div class="row justify-content-center align-middle">
+      <div class="col-sm-5">
+        <div class="prod-img-container">
+          <img id="p-image" class="prod-img shadow-sm" src="<?php echo $product["ImagePath"]; ?>" alt="">
+        </div>
       </div>
-      <div class="col-sm-3 py-3 px-3 bg-dark shadow-lg prod-info-container">
+      
+      <div class="col-sm-3 p-4 bg-dark shadow-lg prod-info-container">
         <h2 id="p-title"><?php echo $product["Name"]; ?></h2>
-        <p id="p-description"><?php echo $product["Description"] ?></p>
+        <p id="p-description" class="mt-4"><?php echo $product["Description"] ?></p>
 
-        <div class="row my-3">
-          <div class="col-3 my-auto">Price</div>
+        <div class="row mt-4">
+          <div class="col-4 my-auto">Price</div>
           <div class="col">
             <span id="p-price" class="prod-info-price">$<?php echo number_format($product["Price"], 2, '.', ''); ?></span>
           </div>
         </div>
 
-        <div class="row my-3">
+        <div class="row mt-4">
           <div class="col-4">
             <input id="inputQuantity" type="number" class="form-control prod-input-quantity" value="1" min="1" max="99" maxlength="2">
           </div>
@@ -56,7 +60,7 @@
       </div>
     </div>
   </div>
-
+</div>
 
 
 

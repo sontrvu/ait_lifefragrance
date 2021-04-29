@@ -17,7 +17,7 @@
 
 
 
-  <div class="px-5 my-5">
+  <div class="background-img px-5 my-5">
 
 
     <div class="container-fluid mt-5">

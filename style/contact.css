@@ -1,3 +1,14 @@
+.background-img {
+  min-height: 100vh;
+  display: table;
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url('../assets/images/background8.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
 .map-container {
   width: 400px;
   height: 300px;

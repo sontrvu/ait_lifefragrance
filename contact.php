@@ -10,7 +10,7 @@
 ?>
 
 
-  <div class="px-5 my-5">
+  <div class="background-img px-5">
     <div class="container-fluid mt-5">
 
 
@@ -24,7 +24,7 @@
             <div class="form-group">
               <label>Email address</label>
               <input id="inputEmail" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter your email" value='<?php echo isset($_SESSION["user_email"]) ? $_SESSION["user_email"] : "" ?>' required>
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              <small id="emailHelp" class="form-text">We'll never share your email with anyone else.</small>
             </div>
             <div class="form-group">
               <label>Phone number</label>

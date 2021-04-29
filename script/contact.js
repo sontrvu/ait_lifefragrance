@@ -20,14 +20,13 @@ function sendFeedback() {
       if (response.isSuccess) {
         // Clear message textarea
         $("#inputMessage").val("");
-        
-        alert('Thank you for your message/feedback');
+        showMessage('Thank you for your message/feedback');
       } else {
-        displayError(response.message);
+        alertMessage(response.message);
       }
     },
     error: function (request, status, error) {
-      displayError(request.responseText);
+      alertMessage(request.responseText);
     }
   });
 }

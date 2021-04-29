@@ -29,7 +29,7 @@ function getItems() {
   global $connection;
 
   if (!isset($_SESSION["user_id"])) {
-    $data = ["isSuccess" => false, "message" => "Something went wrong!"];
+    $data = ["isSuccess" => false, "message" => "Please log in first"];
     echo json_encode($data);
     return;
   }
@@ -58,7 +58,7 @@ function addItem($productId, $quantity) {
   global $connection;
 
   if (!isset($_SESSION["user_id"])) {
-    $data = ["isSuccess" => false, "message" => "Something went wrong!"];
+    $data = ["isSuccess" => false, "message" => "Please log in first"];
     echo json_encode($data);
     return;
   }
@@ -116,7 +116,7 @@ function removeItem($productId) {
   global $connection;
 
   if (!isset($_SESSION["user_id"])) {
-    $data = ["isSuccess" => false, "message" => "Something went wrong!"];
+    $data = ["isSuccess" => false, "message" => "Please log in first"];
     echo json_encode($data);
     return;
   }
@@ -141,7 +141,7 @@ function checkout() {
   global $connection;
 
   if (!isset($_SESSION["user_id"])) {
-    $data = ["isSuccess" => false, "message" => "Something went wrong!"];
+    $data = ["isSuccess" => false, "message" => "Please log in first"];
     echo json_encode($data);
     return;
   }

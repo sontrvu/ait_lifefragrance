@@ -58,9 +58,7 @@
 
         while ($row = mysqli_fetch_array($results)) { 
           if ($idx % 4 == 0) { 
-?>
-          <div class="row justify-content-around mb-5">
-<?php 
+            echo '<div class="row justify-content-around mb-5">';
           } 
 
           $idx++;
@@ -87,7 +85,7 @@
 
                 <div class="row">
                   <div class="col-4 my-auto">
-                    <span class="my-auto product-price">$<?php echo $row["Price"] ?></span>
+                    <span class="my-auto product-price">$<?php echo number_format($row["Price"], 2, '.', ''); ?></span>
                   </div>
                   <div class="col">
                     <button type="button" id='btnAddToCart<?php echo $row["Id"] ?>' class="btn btn-dark btn-lg" onclick='addToCart(<?php echo $row["Id"] ?>)'>Add to cart</button>
@@ -99,9 +97,7 @@
 
 <?php
           if ($idx % 4 == 0) { 
-?>
-        </div>
-<?php 
+            echo '</div>';
           } 
         }
 ?>

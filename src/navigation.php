@@ -10,7 +10,7 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a href="#" class="navbar-brand mr-auto">
+      <a href="index.php" class="navbar-brand mr-auto">
         <div class="nav-logo">LIFE FRAGRANCE</div>
         <!-- <img class="nav-logo" height="30px" src="assets/images/logo.png" alt="logo"> -->
       </a>
@@ -52,7 +52,7 @@
           </li>
 
           <li class="nav-item">
-            <button type="button" id="cartBtn" class="btn btn-outline-light nav-button" data-placement="bottom">Cart</button>
+            <button type="button" id="cartBtn" class="btn btn-outline-light nav-button" data-placement="bottom">Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
           </li>
 
         <?php
@@ -167,7 +167,7 @@
         </tbody>
       </table>
       <div class="w-100 p-3 text-center">
-        <button type="button" class="btn btn-outline-light nav-button w-100 btn-checkout" data-toggle="modal" data-target="#checkoutModal" onclick="checkout()">Check out
+        <button type="button" class="btn btn-outline-light nav-button w-100 btn-checkout" data-toggle="modal" onclick="checkout()">Check out
         </button>
       </div>
     </div>
@@ -188,12 +188,25 @@
   </div>
 
 
-  <!-- CHECKOUT MODAL -->
-  <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- ALERT MODAL -->
+  <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content bg-danger">
+        <div class="modal-body text-center">
+          <h3 id="alertModalMessage"></h3>
+          <button type="button" class="btn btn-outline-light mt-2" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- INFO MODAL -->
+  <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content bg-dark">
         <div class="modal-body text-center">
-          <h3>Thank you for your purchase</h3>
+          <h3 id="infoModalMessage"></h3>
           <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">Close</button>
         </div>
       </div>
@@ -203,201 +216,4 @@
 
 
 
-
-
-  <script type="text/javascript">
-    $(function() {
-      setUpLogOutPopOver();
-      setUpCartPopOver();
-
-      $("#loginForm").submit(function(e) {
-        e.preventDefault();
-        login();
-      });
-
-      $("#registryForm").submit(function(e) {
-        e.preventDefault();
-        register();
-      });
-    });
-
-    function setUpCartPopOver() {
-      $('#cartBtn').popover({
-        html: true,
-        template: `
-          <div class="popover cart-popover shadow" role="tooltip">
-            <div class="arrow"></div>
-              <h3 class="popover-header"></h3>
-            <div class="popover-body"></div>
-          </div>`,
-        content: `<div id="cartPopoverContainer"></div>`
-      });
-
-      $('#cartBtn').on('shown.bs.popover', function() {
-        reloadCart();
-      });
-    }
-
-    function reloadCart() {
-      $.ajax({
-        url: "src/request-handlers/cart.php",
-        type: "post",
-        data: { action: "getItems" },
-        success: function (response) {
-          if (response.isSuccess) {
-            populateCart(response.data);
-          } else {
-            displayError(response.message);
-          }
-        },
-        error: function (request, status, error) {
-          displayError(request.responseText);
-        }
-      });
-    }
-
-    function populateCart(cartList) {
-      if (cartList.length == 0) {
-        showEmptyCart()
-        return;
-      }
-
-      let rows = "";
-      let totalPrice = 0;
-
-      for (const product of cartList) {
-        if (!product)
-          continue;
-
-        totalPrice += product.amount
-        rows += `
-          <tr>
-            <td>${product.name}</td>
-            <td class="text-right">$${product.price}</td>
-            <td class="text-right">${product.quantity}</td>
-            <td class="text-right">$${product.amount}</td>
-            <td><a href="#" class="text-danger" onclick="return removeFromCart('${product.id}')">X</a></td>
-          </tr>
-        `;
-      }
-
-      rows += `
-        <tr>
-          <td></td>
-          <td></td>
-          <td class="font-weight-bolder text-success text-right">Total</td>
-          <td class="font-weight-bolder text-success text-right">$${totalPrice}</td>
-          <td></td>
-        </tr>
-      `
-
-      $(".cart-table-body").empty();
-      $(".cart-table-body").html(rows);
-      
-      let content = $('#cartContentWrapper').html();
-      $('#cartPopoverContainer').html(content);
-    }
-
-    function showEmptyCart() {
-      let content = $('#cartContentEmptyWrapper').html();
-      $('#cartPopoverContainer').html(content);
-    }
-
-    function removeFromCart(productId) {
-      $.ajax({
-        url: "src/request-handlers/cart.php",
-        type: "post",
-        data: { action: "removeItem", productId: productId },
-        success: function (response) {
-          if (!response.isSuccess) {
-            displayError(response.message);
-          }
-
-          reloadCart();
-        },
-        error: function (request, status, error) {
-          displayError(request.responseText);
-        }
-      });
-    }
-    
-
-    function setUpLogOutPopOver() {
-      $('#welcomeUserContainer').popover({
-        html: true,
-        content: `<a id="logoutBtn" class="text-dark font-weight-bold">Log out</a>`
-      });
-
-      $('#welcomeUserContainer').on('shown.bs.popover', function() {
-        $('#logoutBtn').click(logout);
-      });
-    }
-    
-
-    function login() {
-      let email = $('#inputEmail').val();
-      let pwd = $('#inputPassword').val();
-
-      $.ajax({
-        url: "src/request-handlers/user.php",
-        type: "post",
-        data: { action: "login", email: email, password: pwd },
-        success: function (response) {
-          if (response.isSuccess) {
-            location.reload();
-          } else {
-            displayError(response.message);
-          }
-        },
-        error: function (request, status, error) {
-          displayError(request.responseText);
-        }
-      });
-    }
-    
-    function logout() {
-      $.ajax({
-        url: "src/request-handlers/user.php",
-        type: "post",
-        data: { action: "logout" },
-        success: function (response) {
-          if (response.isSuccess) {
-            location.reload();
-          } else {
-            displayError(response.message);
-          }
-        },
-        error: function (request, status, error) {
-          displayError(request.responseText);
-        }
-      });
-    }
-    
-    function register() {
-      let fname = $('#inputRegFName').val();
-      let lname = $('#inputRegLName').val();
-      let email = $('#inputRegEmail').val();
-      let pwd = $('#inputRegPassword').val();
-      let cPwd = $('#inputRegConfirmPassword').val();
-
-      $.ajax({
-        url: "src/request-handlers/user.php",
-        type: "post",
-        data: { action: "register", email: email, password: pwd, firstName: fname, lastName: lname },
-        success: function (response) {
-          if (response.isSuccess) {
-            location.reload();
-          } else {
-            displayError(response.message);
-          }
-        },
-        error: function (request, status, error) {
-          displayError(request.responseText);
-        }
-      });
-    }
-
-    function displayError(message) {
-      alert(message);
-    }
-  </script>
+  <script src="script/navigation.js"></script>

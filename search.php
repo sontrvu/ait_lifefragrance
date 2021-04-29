@@ -13,12 +13,15 @@
   <div class="container-fluid my-5">
 
     <!-- Search bar  -->
-    <div class="input-group input-group-lg w-75">
-      <input type="text" id="inputSearch" class="form-control" placeholder="Search product name" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
-      <div class="input-group-append">
-        <button class="btn btn-secondary btn-lg" type="button" onclick="searchItem()">Search</button>
+    <div class="row justify-content-center">
+      <div class="input-group input-group-lg col-8">
+        <input type="text" id="inputSearch" class="form-control" placeholder="Search product name" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+        <div class="input-group-append">
+          <button class="btn btn-secondary btn-lg" type="button" onclick="searchItem()">Search</button>
+        </div>
       </div>
     </div>
+    
 
 
     <div id="search-result-container" class="row mt-5"> 
